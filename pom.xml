@@ -11,6 +11,8 @@
 	<name>bysj-boot2</name>
 	<description>This is boot2 bysj manage</description>
 
+
+
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -19,6 +21,29 @@
 	</parent>
 
 	<properties>
+		<junit-version>4.8.2</junit-version>
+		<org.springframework-version>3.2.4.RELEASE</org.springframework-version>
+		<jackson-mapper-asl-version>1.9.12</jackson-mapper-asl-version>
+		<jackson-core-asl-version>1.9.12</jackson-core-asl-version>
+		<mysql-connector-java-version>5.1.8</mysql-connector-java-version>
+		<org.mybatis-version>3.2.7</org.mybatis-version>
+		<org.mybatis-spring-version>1.2.2</org.mybatis-spring-version>
+		<opensymphony-version>2.4.2</opensymphony-version>
+		<freemarker-version>2.3.9</freemarker-version>
+		<c3p0-version>0.9.1.2</c3p0-version>
+		<commons-collections-version>1.0</commons-collections-version>
+		<commons-fileupload-version>1.2.2</commons-fileupload-version>
+		<org.apache.commons-version>3.1</org.apache.commons-version>
+		<commons-codec-version>1.6</commons-codec-version>
+		<dom4j-version>1.6.1</dom4j-version>
+		<javax.servlet-version>1.2</javax.servlet-version>
+		<aspectjweaver-version>1.6.6</aspectjweaver-version>
+		<slf4j-log4j12-version>1.6.6</slf4j-log4j12-version>
+		<log4j-version>1.2.16</log4j-version>
+		<javax.servlet-jsp-version>2.0</javax.servlet-jsp-version>
+		<cglib-version>2.2.2</cglib-version>
+		<slf4j-api-version>1.6.6</slf4j-api-version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
@@ -59,6 +84,110 @@
 			<groupId>com.github.pagehelper</groupId>
 			<artifactId>pagehelper</artifactId>
 			<version>4.1.6</version>
+		</dependency>
+
+		<!-- 上传下载excel -->
+
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.13</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>xerces</groupId>
+			<artifactId>xercesImpl</artifactId>
+			<version>2.11.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>3.13</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>18.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>xml-apis</groupId>
+			<artifactId>xml-apis</artifactId>
+			<version>1.4.01</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-client</artifactId>
+			<version>1.18.1</version>
+		</dependency>
+		<!--jcaptcha -->
+		<dependency>
+			<groupId>com.octo.captcha</groupId>
+			<artifactId>jcaptcha</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<!--page -->
+		<dependency>
+			<groupId>cn.itcast</groupId>
+			<artifactId>page</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib</artifactId>
+			<version>${cglib-version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>net.fckeditor</groupId>
+			<artifactId>java-core</artifactId>
+			<version>2.6</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20131018</version>
+		</dependency>
+		<!-- apache commons jar -->
+		<dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+			<version>${commons-collections-version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>${commons-fileupload-version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>${org.apache.commons-version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>${commons-codec-version}</version>
+		</dependency>
+
+		<!-- analyze xml use dom4j -->
+		<dependency>
+			<groupId>dom4j</groupId>
+			<artifactId>dom4j</artifactId>
+			<version>${dom4j-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.thoughtworks.xstream</groupId>
+			<artifactId>xstream</artifactId>
+			<version>1.4.9</version>
 		</dependency>
 	</dependencies>
 
