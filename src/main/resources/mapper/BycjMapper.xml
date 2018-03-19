@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.bysj.core.mapper.BycjMapper">
+
+
+
+	<select id="getTeacherIdByTrsectionIdAndRoleId" resultType="java.lang.Integer">
+		SELECT teacher.teacher_ID from
+		teacher,techrole where
+		teacher.teacher_ID =
+		techrole.teacher_ID and teacher.TRSection_ID =
+		#{trsectionId} and role_ID = #{roleId}
+	</select>
+
+
+	<select id="getTrsectionIdsByDepartmentId" resultType="java.lang.Integer">
+		select TRSection_ID from trsection where department_ID =
+		#{departmentId}
+	</select>
+
+
+	<select id="getTeacherIdsByTrsectionId" resultType="java.lang.Integer">
+		select teacher_ID from teacher where TRSection_ID =
+		#{trsectionId}
+	</select>
+
+</mapper>

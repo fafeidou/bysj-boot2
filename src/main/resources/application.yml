@@ -1,0 +1,13 @@
+server:
+  port: 8888
+
+spring:
+    datasource:
+        name: bysj
+        url: jdbc:mysql://10.0.0.83:3306/bysj
+        username: root
+        password: sneakerhead
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: cn.bysj
+

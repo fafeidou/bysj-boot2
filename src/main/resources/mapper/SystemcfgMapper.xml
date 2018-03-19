@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.bysj.core.mapper.SystemcfgMapper" >
+  <resultMap id="BaseResultMap" type="cn.bysj.core.pojo.Systemcfg" >
+    <id column="system_Cfg_ID" property="systemCfgId" jdbcType="INTEGER" />
+    <result column="department_ID" property="departmentId" jdbcType="INTEGER" />
+    <result column="system_State" property="systemState" jdbcType="VARCHAR" />
+    <result column="Thesis_Num_Per_Student_Can_Select" property="thesisNumPerStudentCanSelect" jdbcType="INTEGER" />
+    <result column="Max_Student_Num_Per_Thesis_Can_Be_Selected" property="maxStudentNumPerThesisCanBeSelected" jdbcType="INTEGER" />
+    <result column="first_Round_Student_Select_Begin_Time" property="firstRoundStudentSelectBeginTime" jdbcType="TIMESTAMP" />
+    <result column="first_Round_Student_Select_End_Time" property="firstRoundStudentSelectEndTime" jdbcType="TIMESTAMP" />
+    <result column="first_Round_Teacher_Select_Begin_Time" property="firstRoundTeacherSelectBeginTime" jdbcType="TIMESTAMP" />
+    <result column="first_Round_Teacher_Select_End_Time" property="firstRoundTeacherSelectEndTime" jdbcType="TIMESTAMP" />
+    <result column="second_Round_Student_Select_Begin_Time" property="secondRoundStudentSelectBeginTime" jdbcType="TIMESTAMP" />
+    <result column="second_Round_Student_Selec_End_Time" property="secondRoundStudentSelecEndTime" jdbcType="TIMESTAMP" />
+    <result column="Second_Round_Teacher_Select_Begin_Time" property="secondRoundTeacherSelectBeginTime" jdbcType="TIMESTAMP" />
+    <result column="Second_Round_Teacher_Select_End_Time" property="secondRoundTeacherSelectEndTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    system_Cfg_ID, department_ID, system_State, Thesis_Num_Per_Student_Can_Select, Max_Student_Num_Per_Thesis_Can_Be_Selected, 
+    first_Round_Student_Select_Begin_Time, first_Round_Student_Select_End_Time, first_Round_Teacher_Select_Begin_Time, 
+    first_Round_Teacher_Select_End_Time, second_Round_Student_Select_Begin_Time, second_Round_Student_Selec_End_Time, 
+    Second_Round_Teacher_Select_Begin_Time, Second_Round_Teacher_Select_End_Time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.bysj.core.pojo.SystemcfgExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from systemcfg
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from systemcfg
+    where system_Cfg_ID = #{systemCfgId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from systemcfg
+    where system_Cfg_ID = #{systemCfgId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.bysj.core.pojo.SystemcfgExample" >
+    delete from systemcfg
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.bysj.core.pojo.Systemcfg" >
+    insert into systemcfg (system_Cfg_ID, department_ID, system_State, 
+      Thesis_Num_Per_Student_Can_Select, Max_Student_Num_Per_Thesis_Can_Be_Selected, 
+      first_Round_Student_Select_Begin_Time, first_Round_Student_Select_End_Time, 
+      first_Round_Teacher_Select_Begin_Time, first_Round_Teacher_Select_End_Time, 
+      second_Round_Student_Select_Begin_Time, second_Round_Student_Selec_End_Time, 
+      Second_Round_Teacher_Select_Begin_Time, Second_Round_Teacher_Select_End_Time
+      )
+    values (#{systemCfgId,jdbcType=INTEGER}, #{departmentId,jdbcType=INTEGER}, #{systemState,jdbcType=VARCHAR}, 
+      #{thesisNumPerStudentCanSelect,jdbcType=INTEGER}, #{maxStudentNumPerThesisCanBeSelected,jdbcType=INTEGER}, 
+      #{firstRoundStudentSelectBeginTime,jdbcType=TIMESTAMP}, #{firstRoundStudentSelectEndTime,jdbcType=TIMESTAMP}, 
+      #{firstRoundTeacherSelectBeginTime,jdbcType=TIMESTAMP}, #{firstRoundTeacherSelectEndTime,jdbcType=TIMESTAMP}, 
+      #{secondRoundStudentSelectBeginTime,jdbcType=TIMESTAMP}, #{secondRoundStudentSelecEndTime,jdbcType=TIMESTAMP}, 
+      #{secondRoundTeacherSelectBeginTime,jdbcType=TIMESTAMP}, #{secondRoundTeacherSelectEndTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.bysj.core.pojo.Systemcfg" >
+    insert into systemcfg
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="systemCfgId != null" >
+        system_Cfg_ID,
+      </if>
+      <if test="departmentId != null" >
+        department_ID,
+      </if>
+      <if test="systemState != null" >
+        system_State,
+      </if>
+      <if test="thesisNumPerStudentCanSelect != null" >
+        Thesis_Num_Per_Student_Can_Select,
+      </if>
+      <if test="maxStudentNumPerThesisCanBeSelected != null" >
+        Max_Student_Num_Per_Thesis_Can_Be_Selected,
+      </if>
+      <if test="firstRoundStudentSelectBeginTime != null" >
+        first_Round_Student_Select_Begin_Time,
+      </if>
+      <if test="firstRoundStudentSelectEndTime != null" >
+        first_Round_Student_Select_End_Time,
+      </if>
+      <if test="firstRoundTeacherSelectBeginTime != null" >
+        first_Round_Teacher_Select_Begin_Time,
+      </if>
+      <if test="firstRoundTeacherSelectEndTime != null" >
+        first_Round_Teacher_Select_End_Time,
+      </if>
+      <if test="secondRoundStudentSelectBeginTime != null" >
+        second_Round_Student_Select_Begin_Time,
+      </if>
+      <if test="secondRoundStudentSelecEndTime != null" >
+        second_Round_Student_Selec_End_Time,
+      </if>
+      <if test="secondRoundTeacherSelectBeginTime != null" >
+        Second_Round_Teacher_Select_Begin_Time,
+      </if>
+      <if test="secondRoundTeacherSelectEndTime != null" >
+        Second_Round_Teacher_Select_End_Time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="systemCfgId != null" >
+        #{systemCfgId,jdbcType=INTEGER},
+      </if>
+      <if test="departmentId != null" >
+        #{departmentId,jdbcType=INTEGER},
+      </if>
+      <if test="systemState != null" >
+        #{systemState,jdbcType=VARCHAR},
+      </if>
+      <if test="thesisNumPerStudentCanSelect != null" >
+        #{thesisNumPerStudentCanSelect,jdbcType=INTEGER},
+      </if>
+      <if test="maxStudentNumPerThesisCanBeSelected != null" >
+        #{maxStudentNumPerThesisCanBeSelected,jdbcType=INTEGER},
+      </if>
+      <if test="firstRoundStudentSelectBeginTime != null" >
+        #{firstRoundStudentSelectBeginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="firstRoundStudentSelectEndTime != null" >
+        #{firstRoundStudentSelectEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="firstRoundTeacherSelectBeginTime != null" >
+        #{firstRoundTeacherSelectBeginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="firstRoundTeacherSelectEndTime != null" >
+        #{firstRoundTeacherSelectEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="secondRoundStudentSelectBeginTime != null" >
+        #{secondRoundStudentSelectBeginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="secondRoundStudentSelecEndTime != null" >
+        #{secondRoundStudentSelecEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="secondRoundTeacherSelectBeginTime != null" >
+        #{secondRoundTeacherSelectBeginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="secondRoundTeacherSelectEndTime != null" >
+        #{secondRoundTeacherSelectEndTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.bysj.core.pojo.SystemcfgExample" resultType="java.lang.Integer" >
+    select count(*) from systemcfg
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update systemcfg
+    <set >
+      <if test="record.systemCfgId != null" >
+        system_Cfg_ID = #{record.systemCfgId,jdbcType=INTEGER},
+      </if>
+      <if test="record.departmentId != null" >
+        department_ID = #{record.departmentId,jdbcType=INTEGER},
+      </if>
+      <if test="record.systemState != null" >
+        system_State = #{record.systemState,jdbcType=VARCHAR},
+      </if>
+      <if test="record.thesisNumPerStudentCanSelect != null" >
+        Thesis_Num_Per_Student_Can_Select = #{record.thesisNumPerStudentCanSelect,jdbcType=INTEGER},
+      </if>
+      <if test="record.maxStudentNumPerThesisCanBeSelected != null" >
+        Max_Student_Num_Per_Thesis_Can_Be_Selected = #{record.maxStudentNumPerThesisCanBeSelected,jdbcType=INTEGER},
+      </if>
+      <if test="record.firstRoundStudentSelectBeginTime != null" >
+        first_Round_Student_Select_Begin_Time = #{record.firstRoundStudentSelectBeginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.firstRoundStudentSelectEndTime != null" >
+        first_Round_Student_Select_End_Time = #{record.firstRoundStudentSelectEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.firstRoundTeacherSelectBeginTime != null" >
+        first_Round_Teacher_Select_Begin_Time = #{record.firstRoundTeacherSelectBeginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.firstRoundTeacherSelectEndTime != null" >
+        first_Round_Teacher_Select_End_Time = #{record.firstRoundTeacherSelectEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.secondRoundStudentSelectBeginTime != null" >
+        second_Round_Student_Select_Begin_Time = #{record.secondRoundStudentSelectBeginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.secondRoundStudentSelecEndTime != null" >
+        second_Round_Student_Selec_End_Time = #{record.secondRoundStudentSelecEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.secondRoundTeacherSelectBeginTime != null" >
+        Second_Round_Teacher_Select_Begin_Time = #{record.secondRoundTeacherSelectBeginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.secondRoundTeacherSelectEndTime != null" >
+        Second_Round_Teacher_Select_End_Time = #{record.secondRoundTeacherSelectEndTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update systemcfg
+    set system_Cfg_ID = #{record.systemCfgId,jdbcType=INTEGER},
+      department_ID = #{record.departmentId,jdbcType=INTEGER},
+      system_State = #{record.systemState,jdbcType=VARCHAR},
+      Thesis_Num_Per_Student_Can_Select = #{record.thesisNumPerStudentCanSelect,jdbcType=INTEGER},
+      Max_Student_Num_Per_Thesis_Can_Be_Selected = #{record.maxStudentNumPerThesisCanBeSelected,jdbcType=INTEGER},
+      first_Round_Student_Select_Begin_Time = #{record.firstRoundStudentSelectBeginTime,jdbcType=TIMESTAMP},
+      first_Round_Student_Select_End_Time = #{record.firstRoundStudentSelectEndTime,jdbcType=TIMESTAMP},
+      first_Round_Teacher_Select_Begin_Time = #{record.firstRoundTeacherSelectBeginTime,jdbcType=TIMESTAMP},
+      first_Round_Teacher_Select_End_Time = #{record.firstRoundTeacherSelectEndTime,jdbcType=TIMESTAMP},
+      second_Round_Student_Select_Begin_Time = #{record.secondRoundStudentSelectBeginTime,jdbcType=TIMESTAMP},
+      second_Round_Student_Selec_End_Time = #{record.secondRoundStudentSelecEndTime,jdbcType=TIMESTAMP},
+      Second_Round_Teacher_Select_Begin_Time = #{record.secondRoundTeacherSelectBeginTime,jdbcType=TIMESTAMP},
+      Second_Round_Teacher_Select_End_Time = #{record.secondRoundTeacherSelectEndTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.bysj.core.pojo.Systemcfg" >
+    update systemcfg
+    <set >
+      <if test="departmentId != null" >
+        department_ID = #{departmentId,jdbcType=INTEGER},
+      </if>
+      <if test="systemState != null" >
+        system_State = #{systemState,jdbcType=VARCHAR},
+      </if>
+      <if test="thesisNumPerStudentCanSelect != null" >
+        Thesis_Num_Per_Student_Can_Select = #{thesisNumPerStudentCanSelect,jdbcType=INTEGER},
+      </if>
+      <if test="maxStudentNumPerThesisCanBeSelected != null" >
+        Max_Student_Num_Per_Thesis_Can_Be_Selected = #{maxStudentNumPerThesisCanBeSelected,jdbcType=INTEGER},
+      </if>
+      <if test="firstRoundStudentSelectBeginTime != null" >
+        first_Round_Student_Select_Begin_Time = #{firstRoundStudentSelectBeginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="firstRoundStudentSelectEndTime != null" >
+        first_Round_Student_Select_End_Time = #{firstRoundStudentSelectEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="firstRoundTeacherSelectBeginTime != null" >
+        first_Round_Teacher_Select_Begin_Time = #{firstRoundTeacherSelectBeginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="firstRoundTeacherSelectEndTime != null" >
+        first_Round_Teacher_Select_End_Time = #{firstRoundTeacherSelectEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="secondRoundStudentSelectBeginTime != null" >
+        second_Round_Student_Select_Begin_Time = #{secondRoundStudentSelectBeginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="secondRoundStudentSelecEndTime != null" >
+        second_Round_Student_Selec_End_Time = #{secondRoundStudentSelecEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="secondRoundTeacherSelectBeginTime != null" >
+        Second_Round_Teacher_Select_Begin_Time = #{secondRoundTeacherSelectBeginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="secondRoundTeacherSelectEndTime != null" >
+        Second_Round_Teacher_Select_End_Time = #{secondRoundTeacherSelectEndTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where system_Cfg_ID = #{systemCfgId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.bysj.core.pojo.Systemcfg" >
+    update systemcfg
+    set department_ID = #{departmentId,jdbcType=INTEGER},
+      system_State = #{systemState,jdbcType=VARCHAR},
+      Thesis_Num_Per_Student_Can_Select = #{thesisNumPerStudentCanSelect,jdbcType=INTEGER},
+      Max_Student_Num_Per_Thesis_Can_Be_Selected = #{maxStudentNumPerThesisCanBeSelected,jdbcType=INTEGER},
+      first_Round_Student_Select_Begin_Time = #{firstRoundStudentSelectBeginTime,jdbcType=TIMESTAMP},
+      first_Round_Student_Select_End_Time = #{firstRoundStudentSelectEndTime,jdbcType=TIMESTAMP},
+      first_Round_Teacher_Select_Begin_Time = #{firstRoundTeacherSelectBeginTime,jdbcType=TIMESTAMP},
+      first_Round_Teacher_Select_End_Time = #{firstRoundTeacherSelectEndTime,jdbcType=TIMESTAMP},
+      second_Round_Student_Select_Begin_Time = #{secondRoundStudentSelectBeginTime,jdbcType=TIMESTAMP},
+      second_Round_Student_Selec_End_Time = #{secondRoundStudentSelecEndTime,jdbcType=TIMESTAMP},
+      Second_Round_Teacher_Select_Begin_Time = #{secondRoundTeacherSelectBeginTime,jdbcType=TIMESTAMP},
+      Second_Round_Teacher_Select_End_Time = #{secondRoundTeacherSelectEndTime,jdbcType=TIMESTAMP}
+    where system_Cfg_ID = #{systemCfgId,jdbcType=INTEGER}
+  </update>
+</mapper>

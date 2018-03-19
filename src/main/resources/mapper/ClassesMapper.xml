@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.bysj.core.mapper.ClassesMapper" >
+  <resultMap id="BaseResultMap" type="cn.bysj.core.pojo.Classes" >
+    <id column="classis_ID" property="classisId" jdbcType="INTEGER" />
+    <result column="department_ID" property="departmentId" jdbcType="INTEGER" />
+    <result column="class_Name" property="className" jdbcType="VARCHAR" />
+    <result column="academic_Type" property="academicType" jdbcType="VARCHAR" />
+    <result column="Graduation_Year" property="graduationYear" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    classis_ID, department_ID, class_Name, academic_Type, Graduation_Year
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.bysj.core.pojo.ClassesExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from classes
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from classes
+    where classis_ID = #{classisId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from classes
+    where classis_ID = #{classisId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.bysj.core.pojo.ClassesExample" >
+    delete from classes
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.bysj.core.pojo.Classes" >
+    insert into classes (classis_ID, department_ID, class_Name, 
+      academic_Type, Graduation_Year)
+    values (#{classisId,jdbcType=INTEGER}, #{departmentId,jdbcType=INTEGER}, #{className,jdbcType=VARCHAR}, 
+      #{academicType,jdbcType=VARCHAR}, #{graduationYear,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.bysj.core.pojo.Classes" >
+    insert into classes
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="classisId != null" >
+        classis_ID,
+      </if>
+      <if test="departmentId != null" >
+        department_ID,
+      </if>
+      <if test="className != null" >
+        class_Name,
+      </if>
+      <if test="academicType != null" >
+        academic_Type,
+      </if>
+      <if test="graduationYear != null" >
+        Graduation_Year,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="classisId != null" >
+        #{classisId,jdbcType=INTEGER},
+      </if>
+      <if test="departmentId != null" >
+        #{departmentId,jdbcType=INTEGER},
+      </if>
+      <if test="className != null" >
+        #{className,jdbcType=VARCHAR},
+      </if>
+      <if test="academicType != null" >
+        #{academicType,jdbcType=VARCHAR},
+      </if>
+      <if test="graduationYear != null" >
+        #{graduationYear,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.bysj.core.pojo.ClassesExample" resultType="java.lang.Integer" >
+    select count(*) from classes
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update classes
+    <set >
+      <if test="record.classisId != null" >
+        classis_ID = #{record.classisId,jdbcType=INTEGER},
+      </if>
+      <if test="record.departmentId != null" >
+        department_ID = #{record.departmentId,jdbcType=INTEGER},
+      </if>
+      <if test="record.className != null" >
+        class_Name = #{record.className,jdbcType=VARCHAR},
+      </if>
+      <if test="record.academicType != null" >
+        academic_Type = #{record.academicType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.graduationYear != null" >
+        Graduation_Year = #{record.graduationYear,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update classes
+    set classis_ID = #{record.classisId,jdbcType=INTEGER},
+      department_ID = #{record.departmentId,jdbcType=INTEGER},
+      class_Name = #{record.className,jdbcType=VARCHAR},
+      academic_Type = #{record.academicType,jdbcType=VARCHAR},
+      Graduation_Year = #{record.graduationYear,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.bysj.core.pojo.Classes" >
+    update classes
+    <set >
+      <if test="departmentId != null" >
+        department_ID = #{departmentId,jdbcType=INTEGER},
+      </if>
+      <if test="className != null" >
+        class_Name = #{className,jdbcType=VARCHAR},
+      </if>
+      <if test="academicType != null" >
+        academic_Type = #{academicType,jdbcType=VARCHAR},
+      </if>
+      <if test="graduationYear != null" >
+        Graduation_Year = #{graduationYear,jdbcType=CHAR},
+      </if>
+    </set>
+    where classis_ID = #{classisId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.bysj.core.pojo.Classes" >
+    update classes
+    set department_ID = #{departmentId,jdbcType=INTEGER},
+      class_Name = #{className,jdbcType=VARCHAR},
+      academic_Type = #{academicType,jdbcType=VARCHAR},
+      Graduation_Year = #{graduationYear,jdbcType=CHAR}
+    where classis_ID = #{classisId,jdbcType=INTEGER}
+  </update>
+</mapper>

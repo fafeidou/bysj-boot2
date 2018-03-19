@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.bysj.core.mapper.TeacherMapper">
+	<resultMap id="BaseResultMap" type="cn.bysj.core.pojo.Teacher">
+		<id column="teacher_ID" property="teacherId" jdbcType="INTEGER" />
+		<result column="TRSection_ID" property="trsectionId" jdbcType="INTEGER" />
+		<result column="employee_Num" property="employeeNum" jdbcType="VARCHAR" />
+		<result column="teacher_Name" property="teacherName" jdbcType="VARCHAR" />
+		<result column="password" property="password" jdbcType="VARCHAR" />
+		<result column="phone" property="phone" jdbcType="VARCHAR" />
+		<result column="qq" property="qq" jdbcType="VARCHAR" />
+		<result column="email" property="email" jdbcType="VARCHAR" />
+		<result column="junior_College_Quota" property="juniorCollegeQuota"
+			jdbcType="INTEGER" />
+		<result column="undergraduate_Quota" property="undergraduateQuota"
+			jdbcType="INTEGER" />
+		<result column="professional_Rank" property="professionalRank"
+			jdbcType="VARCHAR" />
+		<result column="teacher_school_state" property="teacherSchoolState"
+			jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		teacher_ID, TRSection_ID, employee_Num, teacher_Name,
+		password, phone, qq, email,
+		junior_College_Quota, undergraduate_Quota,
+		professional_Rank,
+		teacher_school_state
+	</sql>
+	<select id="selectByExample" resultMap="BaseResultMap"
+		parameterType="cn.bysj.core.pojo.TeacherExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from teacher
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+		<if test="isLimit != 0">
+			limit ${startRow},${pageSize}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from teacher
+		where teacher_ID = #{teacherId,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		teacher
+		where teacher_ID = #{teacherId,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteByExample" parameterType="cn.bysj.core.pojo.TeacherExample">
+		delete from teacher
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="cn.bysj.core.pojo.Teacher"
+		useGeneratedKeys="true" keyProperty="teacherId">
+		insert into teacher
+		(teacher_ID,
+		TRSection_ID, employee_Num,
+		teacher_Name, password, phone,
+		qq, email,
+		junior_College_Quota,
+		undergraduate_Quota,
+		professional_Rank,
+		teacher_school_state
+		)
+		values
+		(#{teacherId,jdbcType=INTEGER},
+		#{trsectionId,jdbcType=INTEGER},
+		#{employeeNum,jdbcType=VARCHAR},
+		#{teacherName,jdbcType=VARCHAR},
+		#{password,jdbcType=VARCHAR},
+		#{phone,jdbcType=VARCHAR},
+		#{qq,jdbcType=VARCHAR},
+		#{email,jdbcType=VARCHAR},
+		#{juniorCollegeQuota,jdbcType=INTEGER},
+		#{undergraduateQuota,jdbcType=INTEGER},
+		#{professionalRank,jdbcType=VARCHAR},
+		#{teacherSchoolState,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="cn.bysj.core.pojo.Teacher"
+		useGeneratedKeys="true" keyProperty="teacherId">
+		insert into teacher
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="teacherId != null">
+				teacher_ID,
+			</if>
+			<if test="trsectionId != null">
+				TRSection_ID,
+			</if>
+			<if test="employeeNum != null">
+				employee_Num,
+			</if>
+			<if test="teacherName != null">
+				teacher_Name,
+			</if>
+			<if test="password != null">
+				password,
+			</if>
+			<if test="phone != null">
+				phone,
+			</if>
+			<if test="qq != null">
+				qq,
+			</if>
+			<if test="email != null">
+				email,
+			</if>
+			<if test="juniorCollegeQuota != null">
+				junior_College_Quota,
+			</if>
+			<if test="undergraduateQuota != null">
+				undergraduate_Quota,
+			</if>
+			<if test="professionalRank != null">
+				professional_Rank,
+			</if>
+			<if test="teacherSchoolState != null">
+				teacher_school_state,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="teacherId != null">
+				#{teacherId,jdbcType=INTEGER},
+			</if>
+			<if test="trsectionId != null">
+				#{trsectionId,jdbcType=INTEGER},
+			</if>
+			<if test="employeeNum != null">
+				#{employeeNum,jdbcType=VARCHAR},
+			</if>
+			<if test="teacherName != null">
+				#{teacherName,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				#{password,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				#{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="qq != null">
+				#{qq,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				#{email,jdbcType=VARCHAR},
+			</if>
+			<if test="juniorCollegeQuota != null">
+				#{juniorCollegeQuota,jdbcType=INTEGER},
+			</if>
+			<if test="undergraduateQuota != null">
+				#{undergraduateQuota,jdbcType=INTEGER},
+			</if>
+			<if test="professionalRank != null">
+				#{professionalRank,jdbcType=VARCHAR},
+			</if>
+			<if test="teacherSchoolState != null">
+				#{teacherSchoolState,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample" parameterType="cn.bysj.core.pojo.TeacherExample"
+		resultType="java.lang.Integer">
+		select count(*) from teacher
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update teacher
+		<set>
+			<if test="record.teacherId != null">
+				teacher_ID = #{record.teacherId,jdbcType=INTEGER},
+			</if>
+			<if test="record.trsectionId != null">
+				TRSection_ID = #{record.trsectionId,jdbcType=INTEGER},
+			</if>
+			<if test="record.employeeNum != null">
+				employee_Num = #{record.employeeNum,jdbcType=VARCHAR},
+			</if>
+			<if test="record.teacherName != null">
+				teacher_Name = #{record.teacherName,jdbcType=VARCHAR},
+			</if>
+			<if test="record.password != null">
+				password = #{record.password,jdbcType=VARCHAR},
+			</if>
+			<if test="record.phone != null">
+				phone = #{record.phone,jdbcType=VARCHAR},
+			</if>
+			<if test="record.qq != null">
+				qq = #{record.qq,jdbcType=VARCHAR},
+			</if>
+			<if test="record.email != null">
+				email = #{record.email,jdbcType=VARCHAR},
+			</if>
+			<if test="record.juniorCollegeQuota != null">
+				junior_College_Quota =
+				#{record.juniorCollegeQuota,jdbcType=INTEGER},
+			</if>
+			<if test="record.undergraduateQuota != null">
+				undergraduate_Quota =
+				#{record.undergraduateQuota,jdbcType=INTEGER},
+			</if>
+			<if test="record.professionalRank != null">
+				professional_Rank =
+				#{record.professionalRank,jdbcType=VARCHAR},
+			</if>
+			<if test="record.teacherSchoolState != null">
+				teacher_school_state =
+				#{record.teacherSchoolState,jdbcType=VARCHAR},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update teacher
+		set teacher_ID = #{record.teacherId,jdbcType=INTEGER},
+		TRSection_ID = #{record.trsectionId,jdbcType=INTEGER},
+		employee_Num =
+		#{record.employeeNum,jdbcType=VARCHAR},
+		teacher_Name =
+		#{record.teacherName,jdbcType=VARCHAR},
+		password =
+		#{record.password,jdbcType=VARCHAR},
+		phone =
+		#{record.phone,jdbcType=VARCHAR},
+		qq = #{record.qq,jdbcType=VARCHAR},
+		email = #{record.email,jdbcType=VARCHAR},
+		junior_College_Quota =
+		#{record.juniorCollegeQuota,jdbcType=INTEGER},
+		undergraduate_Quota =
+		#{record.undergraduateQuota,jdbcType=INTEGER},
+		professional_Rank =
+		#{record.professionalRank,jdbcType=VARCHAR},
+		teacher_school_state =
+		#{record.teacherSchoolState,jdbcType=VARCHAR}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="cn.bysj.core.pojo.Teacher">
+		update teacher
+		<set>
+			<if test="trsectionId != null">
+				TRSection_ID = #{trsectionId,jdbcType=INTEGER},
+			</if>
+			<if test="employeeNum != null">
+				employee_Num = #{employeeNum,jdbcType=VARCHAR},
+			</if>
+			<if test="teacherName != null">
+				teacher_Name = #{teacherName,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				password = #{password,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				phone = #{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="qq != null">
+				qq = #{qq,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				email = #{email,jdbcType=VARCHAR},
+			</if>
+			<if test="juniorCollegeQuota != null">
+				junior_College_Quota =
+				#{juniorCollegeQuota,jdbcType=INTEGER},
+			</if>
+			<if test="undergraduateQuota != null">
+				undergraduate_Quota =
+				#{undergraduateQuota,jdbcType=INTEGER},
+			</if>
+			<if test="professionalRank != null">
+				professional_Rank = #{professionalRank,jdbcType=VARCHAR},
+			</if>
+			<if test="teacherSchoolState != null">
+				teacher_school_state =
+				#{teacherSchoolState,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where teacher_ID = #{teacherId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cn.bysj.core.pojo.Teacher">
+		update teacher
+		set
+		TRSection_ID = #{trsectionId,jdbcType=INTEGER},
+		employee_Num =
+		#{employeeNum,jdbcType=VARCHAR},
+		teacher_Name =
+		#{teacherName,jdbcType=VARCHAR},
+		password =
+		#{password,jdbcType=VARCHAR},
+		phone = #{phone,jdbcType=VARCHAR},
+		qq =
+		#{qq,jdbcType=VARCHAR},
+		email = #{email,jdbcType=VARCHAR},
+		junior_College_Quota = #{juniorCollegeQuota,jdbcType=INTEGER},
+		undergraduate_Quota = #{undergraduateQuota,jdbcType=INTEGER},
+		professional_Rank = #{professionalRank,jdbcType=VARCHAR},
+		teacher_school_state = #{teacherSchoolState,jdbcType=VARCHAR}
+		where
+		teacher_ID = #{teacherId,jdbcType=INTEGER}
+	</update>
+</mapper>

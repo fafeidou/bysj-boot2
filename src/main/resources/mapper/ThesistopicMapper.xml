@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.bysj.core.mapper.ThesistopicMapper">
+	<resultMap id="BaseResultMap" type="cn.bysj.core.pojo.Thesistopic">
+		<id column="thesis_Topic_ID" property="thesisTopicId" jdbcType="INTEGER" />
+		<result column="topic_Source_Type_ID" property="topicSourceTypeId"
+			jdbcType="INTEGER" />
+		<result column="teacher_ID" property="teacherId" jdbcType="INTEGER" />
+		<result column="topic_Type_ID" property="topicTypeId" jdbcType="INTEGER" />
+		<result column="thesis_Title" property="thesisTitle" jdbcType="VARCHAR" />
+		<result column="thesis_English_Tile" property="thesisEnglishTile"
+			jdbcType="VARCHAR" />
+		<result column="project_Requirement" property="projectRequirement"
+			jdbcType="VARCHAR" />
+		<result column="workload_Reqirement" property="workloadReqirement"
+			jdbcType="VARCHAR" />
+		<result column="other_Teacher_Can_See" property="otherTeacherCanSee"
+			jdbcType="TINYINT" />
+		<result column="topic_State" property="topicState" jdbcType="TINYINT" />
+		<result column="create_Date" property="createDate" jdbcType="TIMESTAMP" />
+		<result column="last_Use_Date" property="lastUseDate" jdbcType="TIMESTAMP" />
+		<result column="note" property="note" jdbcType="VARCHAR" />
+		<result column="graduation_Year" property="graduationYear"
+			jdbcType="CHAR" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		thesis_Topic_ID, topic_Source_Type_ID, teacher_ID,
+		topic_Type_ID, thesis_Title,
+		thesis_English_Tile,
+		project_Requirement,
+		workload_Reqirement, other_Teacher_Can_See, topic_State, create_Date,
+		last_Use_Date, note, graduation_Year
+	</sql>
+	<select id="selectByExample" resultMap="BaseResultMap"
+		parameterType="cn.bysj.core.pojo.ThesistopicExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from thesistopic
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+		<if test="isLimit != 0">
+			limit ${startRow},${pageSize}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from thesistopic
+		where thesis_Topic_ID =
+		#{thesisTopicId,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		thesistopic
+		where thesis_Topic_ID = #{thesisTopicId,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteByExample" parameterType="cn.bysj.core.pojo.ThesistopicExample">
+		delete from thesistopic
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="cn.bysj.core.pojo.Thesistopic"
+		useGeneratedKeys="true" keyProperty="thesisTopicId">
+		insert into thesistopic
+		(thesis_Topic_ID, topic_Source_Type_ID,
+		teacher_ID, topic_Type_ID,
+		thesis_Title,
+		thesis_English_Tile, project_Requirement,
+		workload_Reqirement, other_Teacher_Can_See,
+		topic_State, create_Date,
+		last_Use_Date,
+		note, graduation_Year)
+		values
+		(#{thesisTopicId,jdbcType=INTEGER},
+		#{topicSourceTypeId,jdbcType=INTEGER},
+		#{teacherId,jdbcType=INTEGER},
+		#{topicTypeId,jdbcType=INTEGER}, #{thesisTitle,jdbcType=VARCHAR},
+		#{thesisEnglishTile,jdbcType=VARCHAR},
+		#{projectRequirement,jdbcType=VARCHAR},
+		#{workloadReqirement,jdbcType=VARCHAR},
+		#{otherTeacherCanSee,jdbcType=TINYINT},
+		#{topicState,jdbcType=TINYINT}, #{createDate,jdbcType=TIMESTAMP},
+		#{lastUseDate,jdbcType=TIMESTAMP},
+		#{note,jdbcType=VARCHAR},
+		#{graduationYear,jdbcType=CHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="cn.bysj.core.pojo.Thesistopic"
+		useGeneratedKeys="true" keyProperty="thesisTopicId">
+		insert into thesistopic
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="thesisTopicId != null">
+				thesis_Topic_ID,
+			</if>
+			<if test="topicSourceTypeId != null">
+				topic_Source_Type_ID,
+			</if>
+			<if test="teacherId != null">
+				teacher_ID,
+			</if>
+			<if test="topicTypeId != null">
+				topic_Type_ID,
+			</if>
+			<if test="thesisTitle != null">
+				thesis_Title,
+			</if>
+			<if test="thesisEnglishTile != null">
+				thesis_English_Tile,
+			</if>
+			<if test="projectRequirement != null">
+				project_Requirement,
+			</if>
+			<if test="workloadReqirement != null">
+				workload_Reqirement,
+			</if>
+			<if test="otherTeacherCanSee != null">
+				other_Teacher_Can_See,
+			</if>
+			<if test="topicState != null">
+				topic_State,
+			</if>
+			<if test="createDate != null">
+				create_Date,
+			</if>
+			<if test="lastUseDate != null">
+				last_Use_Date,
+			</if>
+			<if test="note != null">
+				note,
+			</if>
+			<if test="graduationYear != null">
+				graduation_Year,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="thesisTopicId != null">
+				#{thesisTopicId,jdbcType=INTEGER},
+			</if>
+			<if test="topicSourceTypeId != null">
+				#{topicSourceTypeId,jdbcType=INTEGER},
+			</if>
+			<if test="teacherId != null">
+				#{teacherId,jdbcType=INTEGER},
+			</if>
+			<if test="topicTypeId != null">
+				#{topicTypeId,jdbcType=INTEGER},
+			</if>
+			<if test="thesisTitle != null">
+				#{thesisTitle,jdbcType=VARCHAR},
+			</if>
+			<if test="thesisEnglishTile != null">
+				#{thesisEnglishTile,jdbcType=VARCHAR},
+			</if>
+			<if test="projectRequirement != null">
+				#{projectRequirement,jdbcType=VARCHAR},
+			</if>
+			<if test="workloadReqirement != null">
+				#{workloadReqirement,jdbcType=VARCHAR},
+			</if>
+			<if test="otherTeacherCanSee != null">
+				#{otherTeacherCanSee,jdbcType=TINYINT},
+			</if>
+			<if test="topicState != null">
+				#{topicState,jdbcType=TINYINT},
+			</if>
+			<if test="createDate != null">
+				#{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="lastUseDate != null">
+				#{lastUseDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="note != null">
+				#{note,jdbcType=VARCHAR},
+			</if>
+			<if test="graduationYear != null">
+				#{graduationYear,jdbcType=CHAR},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample" parameterType="cn.bysj.core.pojo.ThesistopicExample"
+		resultType="java.lang.Integer">
+		select count(*) from thesistopic
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update thesistopic
+		<set>
+			<if test="record.thesisTopicId != null">
+				thesis_Topic_ID =
+				#{record.thesisTopicId,jdbcType=INTEGER},
+			</if>
+			<if test="record.topicSourceTypeId != null">
+				topic_Source_Type_ID =
+				#{record.topicSourceTypeId,jdbcType=INTEGER},
+			</if>
+			<if test="record.teacherId != null">
+				teacher_ID = #{record.teacherId,jdbcType=INTEGER},
+			</if>
+			<if test="record.topicTypeId != null">
+				topic_Type_ID = #{record.topicTypeId,jdbcType=INTEGER},
+			</if>
+			<if test="record.thesisTitle != null">
+				thesis_Title = #{record.thesisTitle,jdbcType=VARCHAR},
+			</if>
+			<if test="record.thesisEnglishTile != null">
+				thesis_English_Tile =
+				#{record.thesisEnglishTile,jdbcType=VARCHAR},
+			</if>
+			<if test="record.projectRequirement != null">
+				project_Requirement =
+				#{record.projectRequirement,jdbcType=VARCHAR},
+			</if>
+			<if test="record.workloadReqirement != null">
+				workload_Reqirement =
+				#{record.workloadReqirement,jdbcType=VARCHAR},
+			</if>
+			<if test="record.otherTeacherCanSee != null">
+				other_Teacher_Can_See =
+				#{record.otherTeacherCanSee,jdbcType=TINYINT},
+			</if>
+			<if test="record.topicState != null">
+				topic_State = #{record.topicState,jdbcType=TINYINT},
+			</if>
+			<if test="record.createDate != null">
+				create_Date = #{record.createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.lastUseDate != null">
+				last_Use_Date = #{record.lastUseDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.note != null">
+				note = #{record.note,jdbcType=VARCHAR},
+			</if>
+			<if test="record.graduationYear != null">
+				graduation_Year = #{record.graduationYear,jdbcType=CHAR},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update thesistopic
+		set thesis_Topic_ID =
+		#{record.thesisTopicId,jdbcType=INTEGER},
+		topic_Source_Type_ID =
+		#{record.topicSourceTypeId,jdbcType=INTEGER},
+		teacher_ID =
+		#{record.teacherId,jdbcType=INTEGER},
+		topic_Type_ID =
+		#{record.topicTypeId,jdbcType=INTEGER},
+		thesis_Title =
+		#{record.thesisTitle,jdbcType=VARCHAR},
+		thesis_English_Tile =
+		#{record.thesisEnglishTile,jdbcType=VARCHAR},
+		project_Requirement =
+		#{record.projectRequirement,jdbcType=VARCHAR},
+		workload_Reqirement =
+		#{record.workloadReqirement,jdbcType=VARCHAR},
+		other_Teacher_Can_See =
+		#{record.otherTeacherCanSee,jdbcType=TINYINT},
+		topic_State =
+		#{record.topicState,jdbcType=TINYINT},
+		create_Date =
+		#{record.createDate,jdbcType=TIMESTAMP},
+		last_Use_Date =
+		#{record.lastUseDate,jdbcType=TIMESTAMP},
+		note =
+		#{record.note,jdbcType=VARCHAR},
+		graduation_Year =
+		#{record.graduationYear,jdbcType=CHAR}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="cn.bysj.core.pojo.Thesistopic">
+		update thesistopic
+		<set>
+			<if test="topicSourceTypeId != null">
+				topic_Source_Type_ID =
+				#{topicSourceTypeId,jdbcType=INTEGER},
+			</if>
+			<if test="teacherId != null">
+				teacher_ID = #{teacherId,jdbcType=INTEGER},
+			</if>
+			<if test="topicTypeId != null">
+				topic_Type_ID = #{topicTypeId,jdbcType=INTEGER},
+			</if>
+			<if test="thesisTitle != null">
+				thesis_Title = #{thesisTitle,jdbcType=VARCHAR},
+			</if>
+			<if test="thesisEnglishTile != null">
+				thesis_English_Tile =
+				#{thesisEnglishTile,jdbcType=VARCHAR},
+			</if>
+			<if test="projectRequirement != null">
+				project_Requirement =
+				#{projectRequirement,jdbcType=VARCHAR},
+			</if>
+			<if test="workloadReqirement != null">
+				workload_Reqirement =
+				#{workloadReqirement,jdbcType=VARCHAR},
+			</if>
+			<if test="otherTeacherCanSee != null">
+				other_Teacher_Can_See =
+				#{otherTeacherCanSee,jdbcType=TINYINT},
+			</if>
+			<if test="topicState != null">
+				topic_State = #{topicState,jdbcType=TINYINT},
+			</if>
+			<if test="createDate != null">
+				create_Date = #{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="lastUseDate != null">
+				last_Use_Date = #{lastUseDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="note != null">
+				note = #{note,jdbcType=VARCHAR},
+			</if>
+			<if test="graduationYear != null">
+				graduation_Year = #{graduationYear,jdbcType=CHAR},
+			</if>
+		</set>
+		where thesis_Topic_ID = #{thesisTopicId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cn.bysj.core.pojo.Thesistopic">
+		update thesistopic
+		set topic_Source_Type_ID = #{topicSourceTypeId,jdbcType=INTEGER},
+		teacher_ID = #{teacherId,jdbcType=INTEGER},
+		topic_Type_ID =
+		#{topicTypeId,jdbcType=INTEGER},
+		thesis_Title =
+		#{thesisTitle,jdbcType=VARCHAR},
+		thesis_English_Tile =
+		#{thesisEnglishTile,jdbcType=VARCHAR},
+		project_Requirement =
+		#{projectRequirement,jdbcType=VARCHAR},
+		workload_Reqirement =
+		#{workloadReqirement,jdbcType=VARCHAR},
+		other_Teacher_Can_See =
+		#{otherTeacherCanSee,jdbcType=TINYINT},
+		topic_State =
+		#{topicState,jdbcType=TINYINT},
+		create_Date =
+		#{createDate,jdbcType=TIMESTAMP},
+		last_Use_Date =
+		#{lastUseDate,jdbcType=TIMESTAMP},
+		note = #{note,jdbcType=VARCHAR},
+		graduation_Year = #{graduationYear,jdbcType=CHAR}
+		where thesis_Topic_ID
+		= #{thesisTopicId,jdbcType=INTEGER}
+	</update>
+</mapper>
