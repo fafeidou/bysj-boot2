@@ -26,6 +26,7 @@ public class BysjBoot2Application extends SpringBootServletInitializer{
 
 	@RequestMapping("/")
 	public  String  index(){
+		System.out.println("sfsdfd");
 		return "redirect:/system/login.do";
 	}
 

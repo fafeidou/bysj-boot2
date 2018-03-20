@@ -1,9 +1,6 @@
 package cn.bysj.core.web.session;
 
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
-
 import java.io.Serializable;
 
 import javax.servlet.http.HttpServletRequest;
