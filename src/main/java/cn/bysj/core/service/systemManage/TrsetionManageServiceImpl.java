@@ -3,6 +3,7 @@ package cn.bysj.core.service.systemManage;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,6 +23,7 @@ import cn.itcast.common.page.Pagination;
  */
 @Service
 @Transactional
+@Primary
 public class TrsetionManageServiceImpl implements TrsetionManageService {
 	@Autowired
 	private TrsectionMapper trsectionMapper;
