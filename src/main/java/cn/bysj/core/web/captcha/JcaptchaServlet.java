@@ -13,7 +13,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import cn.bysj.core.web.session.HttpSessionProvider;
 import org.springframework.beans.factory.BeanFactoryUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
@@ -25,12 +29,16 @@ import com.octo.captcha.service.image.ImageCaptchaService;
 /**
  * 提供验证码图片的Servlet
  */
+@Service
 @SuppressWarnings("serial")
 public class JcaptchaServlet extends HttpServlet {
 	public static final String CAPTCHA_IMAGE_FORMAT = "jpeg";
 
 	private ImageCaptchaService captchaService;
-	private SessionProvider session;
+
+
+	private  SessionProvider sessionProvider;
+
 
 	@Override
 	public void init() throws ServletException {
@@ -38,7 +46,7 @@ public class JcaptchaServlet extends HttpServlet {
 				.getWebApplicationContext(getServletContext());
 		captchaService = (ImageCaptchaService) BeanFactoryUtils
 				.beanOfTypeIncludingAncestors(appCtx, ImageCaptchaService.class);
-		session = (SessionProvider) BeanFactoryUtils
+		sessionProvider = (SessionProvider) BeanFactoryUtils
 				.beanOfTypeIncludingAncestors(appCtx, SessionProvider.class);
 	}
 
@@ -53,7 +61,7 @@ public class JcaptchaServlet extends HttpServlet {
 			// the same id must be used to validate the response, the session id
 			// is a good candidate!
 
-			String captchaId = session.getSessionId(request);
+			String captchaId = sessionProvider.getSessionId(request);
 			BufferedImage challenge = captchaService.getImageChallengeForID(
 					captchaId, request.getLocale());
 			// Jimi.putImage("image/jpeg", challenge, jpegOutputStream);

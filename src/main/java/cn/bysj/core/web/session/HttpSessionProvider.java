@@ -1,10 +1,13 @@
 package cn.bysj.core.web.session;
 
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
 import java.io.Serializable;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 public class HttpSessionProvider implements SessionProvider{
 
 	public void setAttribute(HttpServletRequest request, String name,
