@@ -21,28 +21,12 @@
 	</parent>
 
 	<properties>
-		<junit-version>4.8.2</junit-version>
-		<org.springframework-version>3.2.4.RELEASE</org.springframework-version>
-		<jackson-mapper-asl-version>1.9.12</jackson-mapper-asl-version>
-		<jackson-core-asl-version>1.9.12</jackson-core-asl-version>
-		<mysql-connector-java-version>5.1.8</mysql-connector-java-version>
-		<org.mybatis-version>3.2.7</org.mybatis-version>
-		<org.mybatis-spring-version>1.2.2</org.mybatis-spring-version>
-		<opensymphony-version>2.4.2</opensymphony-version>
-		<freemarker-version>2.3.9</freemarker-version>
-		<c3p0-version>0.9.1.2</c3p0-version>
 		<commons-collections-version>1.0</commons-collections-version>
 		<commons-fileupload-version>1.2.2</commons-fileupload-version>
 		<org.apache.commons-version>3.1</org.apache.commons-version>
 		<commons-codec-version>1.6</commons-codec-version>
 		<dom4j-version>1.6.1</dom4j-version>
-		<javax.servlet-version>1.2</javax.servlet-version>
-		<aspectjweaver-version>1.6.6</aspectjweaver-version>
-		<slf4j-log4j12-version>1.6.6</slf4j-log4j12-version>
-		<log4j-version>1.2.16</log4j-version>
-		<javax.servlet-jsp-version>2.0</javax.servlet-jsp-version>
 		<cglib-version>2.2.2</cglib-version>
-		<slf4j-api-version>1.6.6</slf4j-api-version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -54,21 +38,36 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jdbc</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+
+		<!-- spring boot 内置tomcat jsp支持 -->
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
+		</dependency>
+
+		<!-- jstl -->
+		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>${jstl.version}</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.mybatis.spring.boot</groupId>
 			<artifactId>mybatis-spring-boot-starter</artifactId>
 			<version>1.3.2</version>
 		</dependency>
 
-		<dependency>
+		<!--<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
-		</dependency>
+		</dependency>-->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
@@ -119,11 +118,11 @@
 			<version>1.4.01</version>
 		</dependency>
 
-		<dependency>
+		<!--<dependency>
 			<groupId>com.sun.jersey</groupId>
 			<artifactId>jersey-client</artifactId>
 			<version>1.18.1</version>
-		</dependency>
+		</dependency>-->
 		<!--jcaptcha -->
 		<dependency>
 			<groupId>com.octo.captcha</groupId>
@@ -136,17 +135,17 @@
 			<artifactId>page</artifactId>
 			<version>1.0</version>
 		</dependency>
-		<dependency>
+		<!--<dependency>
 			<groupId>cglib</groupId>
 			<artifactId>cglib</artifactId>
 			<version>${cglib-version}</version>
-		</dependency>
+		</dependency>-->
 
-		<dependency>
+		<!--<dependency>
 			<groupId>net.fckeditor</groupId>
 			<artifactId>java-core</artifactId>
 			<version>2.6</version>
-		</dependency>
+		</dependency>-->
 
 		<dependency>
 			<groupId>org.json</groupId>
@@ -189,6 +188,7 @@
 			<artifactId>xstream</artifactId>
 			<version>1.4.9</version>
 		</dependency>
+
 	</dependencies>
 
 	<build>

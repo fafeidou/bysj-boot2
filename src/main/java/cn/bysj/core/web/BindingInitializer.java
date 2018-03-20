@@ -15,5 +15,4 @@ public class BindingInitializer implements WebBindingInitializer {
 		webDataBinder.registerCustomEditor(Date.class, new CustomDateEditor(df, false));
 	}
 
-
 }
