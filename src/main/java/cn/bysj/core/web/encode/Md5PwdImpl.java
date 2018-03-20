@@ -4,7 +4,9 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import org.apache.commons.codec.binary.Hex;
+import org.springframework.stereotype.Component;
 
+@Component
 public class Md5PwdImpl implements Md5Pwd {
 
 	public  String encode(String password) {

@@ -15,13 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @SpringBootApplication
 @MapperScan("cn.bysj.core.mapper")
-@ImportResource(locations = {"classpath:config/captcha.xml","classpath:config/util.xml"})
+@ImportResource(locations = {"classpath:config/captcha.xml"})
 @PropertySource("classpath:config/init.properties")
 @Controller
 public class BysjBoot2Application extends SpringBootServletInitializer{
-
-
-
 
 	public static void main(String[] args) {
 		SpringApplication.run(BysjBoot2Application.class, args);
@@ -45,27 +42,5 @@ public class BysjBoot2Application extends SpringBootServletInitializer{
 		registration.addUrlMappings("/captcha.svl");
 		return registration;
 	}
-//	@Bean
-//	public FilterRegistrationBean testFilterRegistration() {
-//		FilterRegistrationBean registration = new FilterRegistrationBean();
-//		registration.setFilter(new Filter() {
-//			@Override
-//			public void init(FilterConfig filterConfig) throws ServletException {
-//			}
-//			@Override
-//			public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-//					chain.doFilter(request,response);
-//			}
-//
-//			@Override
-//			public void destroy() {
-//
-//			}
-//		});
-//		registration.addUrlPatterns("*.do");
-//		registration.addInitParameter("paramName", "paramValue");
-//		registration.setName("testFilter");
-//		registration.setOrder(1);
-//		return registration;
-//	}
+
 }
