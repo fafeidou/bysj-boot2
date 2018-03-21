@@ -1,7 +1,7 @@
 bysj-boot2
 Introduction of project architecture
 
-     It's a SpingBoot2.0 + Mybatis + mysql + bootstrap + jquery (后期可能用vue) project.(还是中文吧)，前面有一个bysj项目，里面是2016年11月份
+       It's a SpingBoot2.0 + Mybatis + mysql + bootstrap + jquery (后期可能用vue) project.(还是中文吧)，前面有一个bysj项目，里面是2016年11月份
     
 搭建的一个普通的maven项目，这两天有兴趣将项目改造成了springboot2.0【后期可能会用函数式编程，请拭目以待】这种项目架构，更多的使用yml、java配置、刚刚起
 
