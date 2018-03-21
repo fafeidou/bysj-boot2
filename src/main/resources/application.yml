@@ -1,5 +1,7 @@
 server:
   port: 8888
+  tomcat:
+    uri-encoding: UTF-8
 spring:
     datasource:
         name: bysj
@@ -14,7 +16,11 @@ spring:
       restart:
         enabled: true
         exclude: WEB-INF/**
-
+    http:
+      encoding:
+        force: true
+        charset: UTF-8
+        enabled: true
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: cn.bysj
