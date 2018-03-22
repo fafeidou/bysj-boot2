@@ -1,0 +1,11 @@
+{
+   "menus" : [{"icon" : "icon-sys","menuid" : "1","menuname" : "个人信息管理","url" : "","menus" : [
+                 {"icon" : "icon-log","menuid" : "1_1","menuname" : "个人信息列表","url" : "/student/myselfInfo/toListMyselfInfo.do"
+                 }] 
+               },{"icon" : "icon-sys","menuid" : "1","menuname" : "选题管理","url" : "","menus" : [
+                 {"icon" : "icon-log","menuid" : "1_1","menuname" : "所有选题","url" : "/student/thesistopicManage/toListAllThesistopic.do"
+                 },{"icon" : "icon-log","menuid" : "1_1","menuname" : "个人选题","url" : "/student/thesistopicManage/toListMyselfThesistopic.do"
+                 }] 
+               }
+             ]
+}
