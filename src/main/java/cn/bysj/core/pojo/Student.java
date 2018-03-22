@@ -26,7 +26,7 @@ public class Student implements Serializable{
 
     private String email;
 
-    private Integer studentState;
+    private Integer studentState; //学生状态(0：信息未完善1：等待选择2：等待分配3：分配成功)
 
     private String studentSchoolState;
 

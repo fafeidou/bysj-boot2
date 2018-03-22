@@ -852,12 +852,13 @@ public class ThesistopicServiceImpl implements ThesistopicService {
 				Thesistopic thesistopic = thesistopicMapper.selectByPrimaryKey(applications.get(i).getThesisTopicId());
 				if (thesistopic != null) {
 					studentThesistopicCustom.setThesistopic(thesistopic);
+					// 查出对应的教师
+					Teacher teacher = teacherMapper.selectByPrimaryKey(thesistopic.getTeacherId());
+					if (teacher != null) {
+						studentThesistopicCustom.setTeacher(teacher);
+					}
 				}
-				// 查出对应的教师
-				Teacher teacher = teacherMapper.selectByPrimaryKey(thesistopic.getTeacherId());
-				if (teacher != null) {
-					studentThesistopicCustom.setTeacher(teacher);
-				}
+
 				studentThesistopicCustoms.add(i, studentThesistopicCustom);
 			}
 		}

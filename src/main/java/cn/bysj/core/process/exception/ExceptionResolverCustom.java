@@ -3,15 +3,19 @@ package cn.bysj.core.process.exception;
 import java.io.IOException;
 import java.lang.reflect.Method;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.http.HttpOutputMessage;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.HttpMessageNotWritableException;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.http.server.ServletServerHttpResponse;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerExceptionResolver;
@@ -20,22 +24,12 @@ import org.springframework.web.servlet.ModelAndView;
 import cn.bysj.core.process.result.ExceptionResultInfo;
 import cn.bysj.core.process.result.ResultInfo;
 
-/**
- * 
- * <p>
- * Title: ExceptionResolverCustom
- * </p>
- * <p>
- * Description:全局异常处理器
- * </p>
- * <p>
- * Company: www.itcast.com
- * </p>
- * 
- * @author 苗润土
- * @date 2014年11月26日下午5:36:56
- * @version 1.0
- */
+/** 
+* 全局异常处理
+* @author victor.qin 
+* @date 2018/3/21 13:56 
+*/
+@Component
 public class ExceptionResolverCustom implements HandlerExceptionResolver {
 
 	// json转换器
@@ -129,9 +123,15 @@ public class ExceptionResolverCustom implements HandlerExceptionResolver {
 		return jsonMessageConverter;
 	}
 
+	@Resource(name = "mappingJacksonHttpMessageConverter")
 	public void setJsonMessageConverter(
 			HttpMessageConverter<ExceptionResultInfo> jsonMessageConverter) {
 		this.jsonMessageConverter = jsonMessageConverter;
+	}
+
+	@Bean
+	MappingJackson2HttpMessageConverter mappingJacksonHttpMessageConverter (){
+		return new MappingJackson2HttpMessageConverter();
 	}
 
 }

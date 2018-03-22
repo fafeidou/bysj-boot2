@@ -9,7 +9,7 @@ public class Thesistopic implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private Integer thesisTopicId;  //---
+	private Integer thesisTopicId = 88888888;  //---
 
     private Integer topicSourceTypeId;   //展示来源名字
     
@@ -27,7 +27,7 @@ public class Thesistopic implements Serializable{
 
     private Byte otherTeacherCanSee;  //其他老师是否能否看见---
 
-    private Byte topicState;   //展示论文状态-----
+    private Byte topicState;   //展示论文状态----- 课题的状态（0:教案室未审核1，教研室未通过2，院系未审核3，院系审核未通过4，等待选择5，等待分配6，完成）
 
     private Date createDate;   //展示课程添加时间----
 

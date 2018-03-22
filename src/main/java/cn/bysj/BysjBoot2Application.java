@@ -9,6 +9,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,7 @@ import java.util.Properties;
 @ImportResource(locations = {"classpath:config/captcha.xml"})
 @PropertySource("classpath:config/init.properties")
 @Controller
+@ComponentScan( basePackages = "cn.bysj.*")
 public class BysjBoot2Application extends SpringBootServletInitializer{
 
 	public static void main(String[] args) {
@@ -29,7 +31,6 @@ public class BysjBoot2Application extends SpringBootServletInitializer{
 
 	@RequestMapping("/")
 	public  String  index(){
-		System.out.println("sfsdfd");
 		return "redirect:/system/login.do";
 	}
 

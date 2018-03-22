@@ -11,8 +11,6 @@
 	<name>bysj-boot2</name>
 	<description>This is boot2 bysj manage</description>
 
-
-
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -21,6 +19,8 @@
 	</parent>
 
 	<properties>
+		<jackson-mapper-asl-version>1.9.12</jackson-mapper-asl-version>
+		<jackson-core-asl-version>1.9.12</jackson-core-asl-version>
 		<docker.image.prefix>victor-bysj</docker.image.prefix>
 		<commons-collections-version>1.0</commons-collections-version>
 		<commons-fileupload-version>1.2.2</commons-fileupload-version>
@@ -44,6 +44,8 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+
+
 
 		<!-- spring boot 内置tomcat jsp支持 -->
 		<dependency>
@@ -86,6 +88,17 @@
 			<version>4.1.6</version>
 		</dependency>
 
+		<!--springmvc 转 Json -->
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>${jackson-mapper-asl-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-core-asl</artifactId>
+			<version>${jackson-core-asl-version}</version>
+		</dependency>
 		<!-- 上传下载excel -->
 
 		<dependency>
@@ -193,6 +206,14 @@
 	</dependencies>
 
 	<build>
+		<resources>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.xml</include>
+				</includes>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
