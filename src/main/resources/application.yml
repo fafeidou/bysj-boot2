@@ -18,6 +18,7 @@ spring:
       restart:
         enabled: true
         exclude: WEB-INF/**
+        additional-paths: src/main
     http:
       encoding:
         force: true
