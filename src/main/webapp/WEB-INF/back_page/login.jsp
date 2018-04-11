@@ -52,6 +52,7 @@ body {
 								alt="换一张" /><a href="javascript:void(0);"
 								onclick="$('.code').attr('src','/captcha.svl?d='+new Date())"
 								title="换一张"></a>
+
 							<button class="btn btn-info btn-lg" type="submit">登录</button>
 						</form>
 					</div>

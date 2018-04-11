@@ -1,8 +1,14 @@
 package cn.bysj.core.controller;
 
+import javax.imageio.ImageIO;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import cn.bysj.core.config.KaptchaConfig;
+import com.google.code.kaptcha.impl.DefaultKaptcha;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +30,10 @@ import cn.bysj.core.service.teacher.TeacherService;
 import cn.bysj.core.web.common.Constants;
 import cn.bysj.core.web.encode.Md5Pwd;
 import cn.bysj.core.web.session.SessionProvider;
+
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 登录管理 ClassName: LoginController
@@ -48,14 +58,47 @@ public class LoginController {
 	@Autowired
 	private SystemmanagerService systemmanagerService;
 
+	@RequestMapping("/defaultKaptcha")
+	public void defaultKaptcha(HttpServletRequest httpServletRequest,HttpServletResponse response) throws Exception{
 
+		KaptchaConfig.writeToResponse(KaptchaConfig.createText(),response);
+//		response.setDateHeader("Expires", 0);
+//		response.setHeader("Cache-Control",
+//				"no-store, no-cache, must-revalidate");
+//		response.addHeader("Cache-Control", "post-check=0, pre-check=0");
+//		response.setHeader("Pragma", "no-cache");
+//		response.setContentType("image/jpeg");
+//
+//		String capText = captchaProducer.createText();
+//		System.out.println("capText: " + capText);
+//
+//		try {
+//			String uuid= UUIDUtils.getUUID32().trim().toString();
+////			redisTemplate.opsForValue().set(uuid, capText,60*5, TimeUnit.SECONDS);
+//			Cookie cookie = new Cookie("captchaCode",uuid);
+//			response.addCookie(cookie);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//
+//
+//		BufferedImage bi = captchaProducer.createImage(capText);
+//		ServletOutputStream out = response.getOutputStream();
+//		ImageIO.write(bi, "jpg", out);
+//		try {
+//			out.flush();
+//		} finally {
+//			out.close();
+//		}
+	}
 
 	/**
 	 * 跳转login
 	 */
 	@RequestMapping(value = "/login.do")
 	public String login(HttpServletRequest request) {
-		HttpSession session = request.getSession();// 获取session
+        // 获取session
+		HttpSession session = request.getSession();
 		if (session.getAttribute(Constants.TEACHER_SESSION) != null) {
 			return "/first";
 		} else if (session.getAttribute(Constants.STUDENT_SESSION) != null) {
@@ -66,7 +109,7 @@ public class LoginController {
 		return "/login";
 	}
 
-	/*
+	/**
 	 * 教师登录
 	 */
 	@RequestMapping(value = "/teacherLogin.do")
@@ -202,7 +245,8 @@ public class LoginController {
 	@RequestMapping(value = "/systemManagerLogin.do")
 	public String systemManagerLogin(Systemmanager systemmanager, String captcha, ModelMap model,
 			HttpServletRequest request) throws Exception {
-		HttpSession session = request.getSession();// 获取session
+        // 获取session
+		HttpSession session = request.getSession();
 		if (session.getAttribute(Constants.MANAGER_SESSION) != null) {
 			return "/manager/index";
 		}
@@ -257,7 +301,7 @@ public class LoginController {
 		return teacherCustom.getMenu();
 	}
 
-	/*
+	/**
 	 * 加载welcome界面
 	 */
 	@RequestMapping("welcome.do")
@@ -283,7 +327,7 @@ public class LoginController {
 		return "/student/welcome";
 	}
 
-	/*
+	/**
 	 * 注销 公用的
 	 */
 	@RequestMapping("logout.do")
@@ -291,4 +335,6 @@ public class LoginController {
 		session.invalidate();
 		return "redirect:/system/login.do";
 	}
+
+
 }

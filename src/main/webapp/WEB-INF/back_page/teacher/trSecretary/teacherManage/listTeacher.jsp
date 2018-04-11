@@ -222,7 +222,7 @@
 
 	<!-- html的静态布局 -->
 	<form id="sysuserqueryForm"
-		action="/base/trSecretary/teacherManage/teacherExport.do"
+		action="/teacher/trSecretary/teacherManage/teacherExport.do"
 		method="post">
 		<!-- 查询条件 -->
 		<TABLE class="table_search" style="margin-left: 6px">
